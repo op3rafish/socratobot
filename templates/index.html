@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Socratobot{% endblock %}
+
+{% block content %}
+<h1 id="title">Socratobot</h1>
+<div id="quote">“I cannot teach anybody anything, I can only make them think.” — Socrates</div>
+<div id="instructions-button-container">
+    <button id="instructions-button" aria-label="View instructions">Instructions & Info</button>
+</div>
+
+<!-- H3 = sub-headings -->
+ <!-- <strong> = bold -->
+<div id="instructions-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-modal" class="close" aria-label="Close instructions">×</span>
+        <h2>Instructions for Socratobot</h2>
+        <p>Welcome to Socratobot! The friendly AI that helps bring the wisdom of Ancient Greece to the modern world.</p>
+        <br>
+        <h3><strong>History 📜</strong></h3>
+        <p>Long ago, in the agora of ancient Athens, Socrates asked questions. A lot of questions. He would ask ordinary people what they believed, then he would question them on those beliefs, and question their responses. His idea was that, by asking people to question what they held to be true, he could help them understand themselves better. In short, Socrates wanted to encourage people to understand not just what they believed but why they believed it.</p>
+        <p>Philosophers and teachers have since named this method the 'Socratic Dialogue'. And since the days of Socrates it has been used as a valuable teaching tool to encourage deeper questioning and understanding.</p>
+        <p>Socratobot is programmed to use this method to help you in the same way Socrates did.</p>
+        <p>You can learn more about Socrates here.</p>
+
+        <br>
+        <h3><strong>How to Use Socratobot 🤖</strong></h3>
+        <p>Start by thinking of an idea or something you hold to be true. Type that into the chat, and Socratobot will attempt to help you question it further by questioning you on certain aspects of it. Some ideas may be things like "I believe that people are fundamentally good" or "I think that modern art is just a waste of time"; but almost anything can begin a Socratic Dialogue, including quotes or even song lyrics that hold some truth to you.</p>
+        <p>The idea of the Socratic Dialogue is not to 'win' the argument, but to keep exploring. Therefore Socratobot will prompt you with questions which you'll need to think about and reply. The better thought-out and well-reasoned your responses, the better!</p>
+        <p>While this could theoretically go on indefinitely, Socratobot is programmed to pause after five responses and give you a score, along with some tips for ways you could improve. From there, you can either continue the chat or reset and try a new one.</p>
+        <br>
+        <h3><strong>Disclaimer ⚠️</strong></h3>
+        <p>Socratobot is designed for fun and educational purposes only, using the power of AI to help refine critical thinking and encourage self-reflection. It is designed for personal use only and is not meant to be any sort of replacement for educational or medical professionals.</p>
+        <p>As an AI, Socratobot's responses are generated based on patterns and data. This means they can sometimes malfunction and even contain errors/mistakes. Please use the 'Reset' button if this happens and feel free to contact us if you encounter any issues.</p>
+        <br>
+    </div>
+</div>
+
+<div class="chat-wrapper">
+    <div class="socrates-wrapper">
+        <img src="{{ url_for('static', filename='socrates.png') }}" alt="Socrates" class="socrates-img">
+    </div>
+    <div id="chat-container">
+        <div id="chat-messages" aria-live="polite">
+            <!-- Messages will be appended here dynamically -->
+        </div>
+        <div id="chat-input">
+            <textarea id="user-input" placeholder="State your belief or idea. Socratobot will then use the 'Socratic Dialogue' method to encourage you to defend your stance with reason and logic."></textarea>
+            <button id="send-button" aria-label="Send message">Send</button>
+            <button id="reset-button" aria-label="Reset conversation">Reset</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
