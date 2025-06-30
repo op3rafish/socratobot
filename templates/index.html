@@ -1,228 +1,53 @@
-body {
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f5e9d4 url('https://www.transparenttextures.com/patterns/paper-fines.png');
-}
+{% extends "base.html" %}
 
-#title-container {
-    text-align: center;
-    margin: 20px 0 10px 0;
-}
+{% block title %}Socratobot{% endblock %}
 
-#title {
-    font-family: 'Cinzel', serif;
-    font-size: 60px;
-    font-weight: 900;
-    color: #1e3a8a;
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    letter-spacing: 2px;
-}
+{% block content %}
+    <div id="title-container">
+        <h1 id="title">Socratobot</h1>
+        <h2 id="author">By Mark Bonington</h2>
+    </div>
 
-#author {
-    font-family: 'Cinzel', serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #1e3a8a;
-    margin: 5px 0 0 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
+    <div id="quote">
+        "I cannot teach anybody anything, I can only make them think." — Socrates
+    </div>
 
-#quote {
-    font-family: 'EB Garamond', Garamond, Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: #1e3a8a;
-    margin: 10px 0 20px 0;
-    text-align: center;
-    max-width: 800px;
-    line-height: 1.4;
-    font-style: italic;
-}
+    <div id="instructions-button-container">
+        <button id="instructions-button">Instructions & Info</button>
+    </div>
 
-#instructions-button-container {
-    margin: 10px 0;
-    text-align: center;
-}
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">×</span>
+            <h2>Instructions for Socratobot</h2>
+            <p>Welcome to Socratobot! The friendly AI that helps bring the wisdom of Ancient Greece to the modern world.</p>
+            <h3 class="modal-section">History 📜</h3>
+            <p>Long ago, in the agora of ancient Athens, Socrates asked questions. A lot of questions. He would ask ordinary people what they believed, then he would question them on those beliefs, and question their responses. His idea was that, by asking people to question what they held to be true, he could help them understand themselves better. In short, Socrates wanted to encourage people to understand not just what they believed but why they believed it.</p>
+            <p>Philosophers and teachers have since named this method the 'Socratic Dialogue'. And since the days of Socrates it has been used as a valuable teaching tool to encourage deeper questioning and understanding.</p>
+            <p>Socratobot is programmed to use this method to help you in the same way Socrates did.</p>
+            <p>You can learn more about <a href="https://en.wikipedia.org/wiki/Socrates" target="_blank">Socrates here</a>.</p>
+            <h3 class="modal-section">How to Use Socratobot 🤖</h3>
+            <p>Start by thinking of an idea or something you hold to be true. Type that into the chat, and Socratobot will attempt to help you question it further by questioning you on certain aspects of it. Some ideas may be things like "I believe that people are fundamentally good" or "I think that modern art is just a waste of time"; but almost anything can begin a Socratic Dialogue, including quotes or even song lyrics that hold some truth to you.</p>
+            <p>The idea of the Socratic Dialogue is not to 'win' the argument, but to keep exploring. Therefore Socratobot will prompt you with questions which you'll need to think about and reply. The better thought-out and well-reasoned your responses, the better!</p>
+            <p>While this could theoretically go on indefinitely, Socratobot is programmed to pause after five responses and give you a score, along with some tips for ways you could improve. From there, you can either continue the chat or reset and try a new one.</p>
+            <h3 class="modal-section">Disclaimer ⚠️</h3>
+            <p>Socratobot is designed for fun and educational purposes only, using the power of AI to help refine critical thinking and encourage self-reflection. It is designed for personal use only and is not meant to be any sort of replacement for educational or medical professionals.</p>
+            <p>As an AI, Socratobot's responses are generated based on patterns and data. This means they can sometimes malfunction and even contain errors/mistakes. Please use the 'Reset' button if this happens and feel free to contact us if you encounter any issues.</p>
+            <p>© Mark Bonington 2025</p>
+        </div>
+    </div>
 
-#instructions-button {
-    padding: 8px 15px;
-    background: #d4a017;
-    color: #fff8e1;
-    border: 1px solid #1e3a8a;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-}
-
-#instructions-button:hover {
-    background: #b38b15;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-}
-
-.modal-content {
-    background: #fff8e1;
-    padding: 20px;
-    border: 2px solid #1e3a8a;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 600px;
-    max-height: 70vh;
-    overflow-y: auto;
-    line-height: 1.5;
-    font-size: 18px;
-    color: #1e3a8a;
-}
-
-.modal-content h2 {
-    font-family: 'Cinzel', serif;
-    color: #1e3a8a;
-    margin: 0 0 15px 0;
-}
-
-.modal-content .modal-section {
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-.modal-content p {
-    margin: 15px 0;
-}
-
-.close {
-    color: #1e3a8a;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #b38b15;
-}
-
-.chat-wrapper {
-    display: flex;
-    align-items: flex-start;
-    width: 90%;
-    max-width: 900px;
-    margin: 20px;
-    position: relative;
-}
-
-#chat-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff8e1;
-    border: 2px solid #1e3a8a;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-}
-
-#chat-messages {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    border-bottom: 1px solid #1e3a8a;
-    min-height: 200px;
-}
-
-.socrates-wrapper {
-    position: absolute;
-    left: -110px;
-    top: 0;
-    width: 250px;
-}
-
-.socrates-img {
-    width: 140px;
-    margin-right: 20px;
-    display: block;
-}
-
-.message {
-    margin: 8px 0;
-    padding: 12px;
-    border-radius: 5px;
-    max-width: 70%;
-    line-height: 1.5;
-    font-size: 18px;
-}
-
-.user-message {
-    margin-left: auto;
-    background: #1e3a8a;
-    color: #fff8e1;
-    border: 1px solid #d4a017;
-}
-
-.bot-message {
-    background: #e6d7a8;
-    color: #1e3a8a;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    max-width: 70%;
-    white-space: pre-wrap;
-}
-
-#chat-input {
-    display: flex;
-    padding: 10px;
-}
-
-#user-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #d4a017;
-    border-radius: 4px;
-    background: #fdf6e3;
-    color: #1e3a8a;
-    font-size: 18px;
-    resize: vertical;
-    min-height: 100px;
-    line-height: 1.4;
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-}
-
-#user-input::placeholder {
-    color: #4b5e8e;
-}
-
-button {
-    padding: 8px 15px;
-    margin-left: 10px;
-    background: #d4a017;
-    color: #fff8e1;
-    border: 1px solid #1e3a8a;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
-}
-
-button:hover {
-    background: #b38b15;
-}
+    <div class="chat-wrapper">
+        <div class="socrates-wrapper">
+            <img src="{{ url_for('static', filename='socrates.png') }}" alt="Socrates" class="socrates-img">
+        </div>
+        <div id="chat-container">
+            <div id="chat-messages"></div>
+            <div id="chat-input">
+                <textarea id="user-input" placeholder="State your belief or idea. Socratobot will then use the ‘Socratic Dialogue’ method to encourage you to defend your stance with reason and logic."></textarea>
+                <button id="send-button">Send</button>
+                <button id="reset-button">Reset</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
