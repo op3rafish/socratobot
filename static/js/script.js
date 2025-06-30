@@ -6,31 +6,46 @@ const instructionsButton = document.getElementById('instructions-button');
 const instructionsModal = document.getElementById('instructions-modal');
 const closeModal = document.getElementById('close-modal');
 
-// Fetch and display welcome message on page load
-async function displayWelcomeMessage() {
+// Fetch and display full chat history on page load
+async function displayChatHistory() {
     try {
-        const response = await fetch('/welcome', {
+        const response = await fetch('/history', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
         const data = await response.json();
 
-        const botMessage = document.createElement('div');
-        botMessage.className = 'message bot-message';
-        botMessage.textContent = response.ok ? data.response : `Error: ${data.error || 'Failed to load welcome message'}`;
-        chatMessages.appendChild(botMessage);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        if (response.ok) {
+            chatMessages.innerHTML = ''; // Clear existing messages
+            data.history.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.role === 'USER' ? 'user-message' : 'bot-message'}`;
+                messageElement.textContent = message.message;
+                chatMessages.appendChild(messageElement);
+            });
+            // Update placeholder if user has sent at least one message
+            if (data.history.some(message => message.role === 'USER')) {
+                userInput.placeholder = 'Type your message here';
+            }
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        } else {
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'message bot-message';
+            errorMessage.textContent = `Error: ${data.error || 'Failed to load chat history'}`;
+            chatMessages.appendChild(errorMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
     } catch (error) {
         const errorMessage = document.createElement('div');
         errorMessage.className = 'message bot-message';
-        errorMessage.textContent = 'Error: Unable to connect to server for welcome message';
+        errorMessage.textContent = 'Error: Unable to connect to server for chat history';
         chatMessages.appendChild(errorMessage);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 }
 
-// Call displayWelcomeMessage when the page loads
-document.addEventListener('DOMContentLoaded', displayWelcomeMessage);
+// Call displayChatHistory when the page loads
+document.addEventListener('DOMContentLoaded', displayChatHistory);
 
 // Show instructions modal
 instructionsButton.addEventListener('click', () => {
@@ -60,6 +75,8 @@ async function sendMessage() {
     userMessage.textContent = messageText;
     chatMessages.appendChild(userMessage);
     userInput.value = '';
+    // Update placeholder to 'Type your message here' after first user message
+    userInput.placeholder = 'Type your message here';
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
@@ -93,7 +110,7 @@ function updateSocratesPosition() {
         const lastBotMessage = botMessages[botMessages.length - 1];
         const rect = lastBotMessage.getBoundingClientRect();
         const containerRect = chatMessages.getBoundingClientRect();
-        const offset = 20; // Adjust this value to control the jump (positive = less jump, negative = more jump)
+        const offset = 20; // Adjust this value to control the jump
         socratesWrapper.style.top = `${rect.top - containerRect.top + lastBotMessage.offsetHeight / 2 - socratesWrapper.offsetHeight / 2 + offset}px`;
     }
 }
@@ -117,7 +134,8 @@ async function resetChat() {
             headers: { 'Content-Type': 'application/json' }
         });
         chatMessages.innerHTML = '';
-        await displayWelcomeMessage();
+        userInput.placeholder = 'State your belief or idea. Socratobot will then use the ‘Socratic Dialogue’ method to encourage you to defend your stance with reason and logic.';
+        await displayChatHistory();
     } catch (error) {
         console.error('Reset failed:', error);
     }
