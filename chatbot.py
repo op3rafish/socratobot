@@ -97,15 +97,15 @@ def get_chatbot_response(user_input, chat_history=None):
         Ensure every line is a complete statement, ending with a period. No questions.
         Format your response strictly as follows:
 
-        - "Based on your responses, I score your reasoning a [score]/10."
+        - Based on your responses, I score your reasoning a [score]/10.
 
-        - "[pointer 1]"
+        - [pointer 1]
 
-        - "[pointer 2]"
+        - [pointer 2]
 
-        - "[pointer 3, if applicable]"
+        - [pointer 3, if applicable]
 
-        - "Continue this dialogue by sharing further thoughts below, or reset to begin a new debate."
+        - Continue this dialogue by sharing further thoughts below, or reset to begin a new debate.
 
         - Sign off as "-- Socratobot"
         """
