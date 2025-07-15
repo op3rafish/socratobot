@@ -63,7 +63,7 @@ def get_chatbot_response(user_input, chat_history=None):
             message=user_input,
             chat_history=chat_history,
             model="command-a-03-2025",
-            temperature=0.05,
+            temperature=0.1,
             max_tokens=700,
             preamble=preamble
         )
@@ -105,7 +105,7 @@ def get_chatbot_response(user_input, chat_history=None):
 
         - [pointer 3, if applicable]
 
-        - Continue this dialogue by sharing further thoughts below, or reset to begin a new debate.
+        Continue this dialogue by sharing further thoughts below, or reset to begin a new debate.
 
         - Sign off as "-- Socratobot"
         """
@@ -114,7 +114,7 @@ def get_chatbot_response(user_input, chat_history=None):
                 message="Please assess my reasoning skills based on our dialogue.",
                 chat_history=chat_history,
                 model="command-a-03-2025",
-                temperature=0.0,
+                temperature=0.05,
                 max_tokens=700,
                 preamble=feedback_preamble
             )
