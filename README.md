@@ -1,8 +1,5 @@
 # SOCRATOBOT
 
-#### Video Demo: [<URL HERE>](https://www.youtube.com/watch?v=eA1m6pZC6zM)
-
-
 #### Description:
 Socratobot is where ancient philosophy meets modern AI. Inspired by the idea that the Greek philosopher Socrates would debate anyone on anything, in what would come to be known as 'Socratic Dialogue' or the 'Socratic Method', Socratobot helps users to hone their critical thinking skills and question not just what they believe, but why they believe it. With a little help from a friendly chatbot.
 
